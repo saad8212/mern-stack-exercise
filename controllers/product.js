@@ -1,11 +1,15 @@
 //Import Database Model
 const Product = require("../models/product");
+ 
+
+
+
 
 // Save Product into table
 const addProduct = async (req, res) => {
   console.log(req.body);
   const { name, price, company, userId, category } = req.body;
-  console.log(name, price, company, userId, category);
+  console.log(name, price, company, category,userId );
   if (name && price && company && category !== undefined) {
     const newProduct = new Product(req.body);
     let result = newProduct.save();
@@ -14,7 +18,7 @@ const addProduct = async (req, res) => {
       res.send(resp);
     });
   } else {
-    res.status(201).send({ message: "All fields are compulsory" });
+    res.status(301).send({ message: "All fields are compulsory" });
   }
 };
 
@@ -54,14 +58,26 @@ const updateProduct = (req, res) => {
 };
 
 //Remove a Product
-const removeProduct = (req, res) => {
+const removeProduct = async (req, res) => {
   const id = req.params.id;
-  const product = Product.findByIdAndRemove(id);
-  product.then((resp) => {
-    console.log(resp);
-    res.send({ message: "Product deleted successfully!" });
-  });
+  const product =await Product.deleteOne({_id:id});
+  console.log(product);
+  res.status(200).send(product);
 };
+const searchProduct = async (req, res) => {
+  const id = req.params.id;
+  const product =await Product.find({
+    $or: [
+      { category: { $regex: id } },
+    ],
+  });
+  console.log(product);
+  res.send(product);
+};
+
+//middleware for checking auth token
+
+
 
 module.exports = {
   addProduct,
@@ -69,4 +85,5 @@ module.exports = {
   updateProduct,
   removeProduct,
   editProduct,
+  searchProduct
 };

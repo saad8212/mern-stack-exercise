@@ -1,7 +1,9 @@
 const Activity = require("../models/activity");
+
+
 // Test Page
 const main = (req, res) => {
-  res.render("contact");
+  res.render("activities");
 };
 
 // Create a new Activity
@@ -16,7 +18,7 @@ const add_activity = (req, res) => {
       res.send(resp);
     });
   } else {
-    res.status(201).send({ message: "All fields are compulsory" });
+    res.status(400).send({ message: "All fields are compulsory" });
   }
 };
 
@@ -30,6 +32,19 @@ const get_activities = (req, res) => {
     });
   };
   
+  //Search activity
+  const search_activity = async (req, res) => {
+    const id = req.params.id;
+    const activity = await Activity.find({
+      $or: [
+        { category: { $regex: id } },
+      ],
+    });
+    console.log(activity);
+    res.status(200).send(activity);
+  };
+  
+
   //edit an existing product
   const edit_activity = async(req, res) => {
     const id = req.params.id; 
@@ -71,4 +86,4 @@ const get_activities = (req, res) => {
 
 
 
-module.exports = { add_activity, remove_activity, edit_activity, update_activity,get_activities};
+module.exports = {main, add_activity, remove_activity,search_activity, edit_activity, update_activity,get_activities};
