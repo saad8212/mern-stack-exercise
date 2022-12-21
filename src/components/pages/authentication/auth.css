@@ -1,0 +1,71 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+}
+body {
+    overflow-x: hidden;
+}
+.formSection2, .formSection {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height:75vh;
+    position: relative;
+    transition: all 1s ease-in;
+ 
+}
+.formSection2::before{     
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    background:linear-gradient(135deg, #16c9f6 52%,#fff 0%);
+}
+.formSection::before{     
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    background:linear-gradient(315deg, #16c9f6 52%,#fff 0%);
+}
+.auth-button {
+    width: 100%;
+    background-color: #1089ff;
+    height: 3.5rem;
+    border-radius: 12px;
+}
+.input {
+    height: 3.7rem;
+    font-size: 15px !important;
+    margin-top: 2rem;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    padding-left: 60px;
+}
+ .signup{
+    height: 3.1rem;
+    font-size: 15px !important;
+    margin-top: 0.5rem;
+    border-radius: 12px;
+    padding-left: 60px;
+ }
+ input[type="file"] {
+    padding-top: 10px;
+}
+.create-form { 
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height:80vh;
+    position: relative;
+    transition: all 1s ease-in;
+}
+ .textarea{
+    height:5%;
+ }
