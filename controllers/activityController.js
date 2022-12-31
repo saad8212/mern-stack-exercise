@@ -25,30 +25,38 @@ const add_activity = (req, res) => {
 // get all activities
 
 const get_activities = (req, res) => {
-    const activity = Activity.find();
+    const activity = Activity.find({userId: req.params.id});
     activity.then((resp) => {
-      console.log(resp);
       res.send(resp);
     });
   };
   
   //Search activity
   const search_activity = async (req, res) => {
-    const id = req.params.id;
+    const params = req.params.activity;
+    console.log(params);
+    if (params === 'all') {
+      const activity = await Activity.find();
+      return res.send(activity);
+    }
     const activity = await Activity.find({
       $or: [
-        { category: { $regex: id } },
+        { type: { $regex: params } },
       ],
     });
-    console.log(activity);
+    if(activity !==''){
+      console.log(activity);
     res.status(200).send(activity);
+    } else {
+      res.status(404).send({message:"record not found"});
+    }
   };
   
 
-  //edit an existing product
+  //edit an existing activity
   const edit_activity = async(req, res) => {
     const id = req.params.id; 
-    console.log(id);
+    console.log("id", id, "..........................................");
     const activity =await Activity.findById(id);
     console.log(activity);
     res.send(activity);
@@ -58,6 +66,7 @@ const get_activities = (req, res) => {
   const update_activity = (req, res) => {
     const id = req.params.id;
     console.log(id);
+    console.log(req.body);
     const activity = Activity.findByIdAndUpdate(id, { $set: req.body });
     activity.then((resp) => {
       let result = Activity.findById(resp.id);

@@ -18,6 +18,7 @@ let activitySchema = new mongoose.Schema({
     required: true,
   } ,
   date:String,
+  userId:String,
 });
 const Activity = mongoose.model("Activity", activitySchema);
 module.exports = Activity;
