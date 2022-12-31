@@ -6,3 +6,18 @@
 body{
   background-color: #ffff;
 }
+.rounded-circle {
+  height: 70px !important;
+  width: 70px !important;
+  background-color: rgb(63, 62, 62)
+}
+.card {
+  border-radius: 8px !important;
+  width: 32% !important;
+  -webkit-border-radius: 8px !important;
+  -moz-border-radius: 8px !important;
+  -ms-border-radius: 8px !important;
+  -o-border-radius: 8px !important;
+   margin-top: 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

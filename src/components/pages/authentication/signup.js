@@ -1,60 +1,80 @@
 import React, { useState } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
 import "./auth.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {AiOutlineMail} from 'react-icons/ai';
 import {RiLockPasswordLine} from 'react-icons/ri';
-import {BsFillPersonFill, BsFillImageFill} from 'react-icons/bs';
-import { Link, useNavigate } from "react-router-dom";
+import {BsFillPersonFill} from 'react-icons/bs';
+import {MdContactPhone} from 'react-icons/md';
+import { Link} from "react-router-dom";
 function Signup() {
   const [err, setErr] = useState(null);
-  const navigate = useNavigate();
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();  
+  const [phone, setPhone] = useState();  
   const auth = localStorage.getItem("user");
-  console.log(auth);
-  // Login Handler
+  let navigate = useNavigate();
+  // Signup Function
 
-  const loginHandler = async (event) => {
+   
+  
+  const signupHandler = async (event) => {
     setErr(null);
     event.preventDefault();
-    let email = event.target.email.value;
-    let password = event.target.password.value;
-    if (email && password !== "") {
-      const submit_data = await fetch("http://localhost:3005/login", {
+     
+    if (email && password && name && phone) {
+      const register = await fetch("http://localhost:3005/register", {
         method: "POST",
         body: JSON.stringify({
+          name,
           email,
-          password,
+          phone,
+          password
         }),
         headers: { "Content-Type": "application/json" },
       });
-      const result = await submit_data.json();
-      
-      if (submit_data.status === 200) {
-        localStorage.setItem("user", JSON.stringify(result.user));
-        localStorage.setItem("token", JSON.stringify(result.auth));
+      let result = await register.json();
+      if(register.status === 200) {
         console.log(result);
-        navigate("/");
+        var deleteToast = () =>{
+          toast.success("User Registered Successfully!",{
+            position:"top-center",
+            theme: "colored",
+            autoClose: 2000,
+          });
+        }
+        deleteToast();
+        setTimeout(() => {
+          navigate("/login");
+     }, 2000);
       } else {
         setErr(result.message);
       }
-    }
-  };
+
+    };
+}
   return (
     <div class="mt-5">
+       {auth?<Navigate to = "/"/>:
+       <>
       <div class="row">
         <div class="col-lg-4 col-md-6 col-10 offset-lg-4 offset-md-3 offset-1 formSection2">
           <div class="container">
             <div class=" headings text-center mt-5">
               <h1>Signup</h1>
             </div>
-            {err && <span>Error Message</span>}
-            <form id="makeTodo" onSubmit={loginHandler}>
+            {err && <span>{err}</span>}
+            <form id="makeTodo" onSubmit={signupHandler} enctype="multipart/form-data">
               <div class="form-group d-flex flex-row align-items-end">
               <BsFillPersonFill className="position-absolute text-muted d-flex pl-3" 
               style={{fontSize:"3rem"}}/>
                 <input
-                  type="text"
-                  name="name"
+                  type="text" 
                   class="form-control  signup" 
-                  placeholder="Email address"
+                  placeholder="Enter Name..."
+                  onChange={(e) =>setName(e.target.value)}
                 />
               </div>
               <div class="form-group d-flex flex-row align-items-end">
@@ -64,20 +84,22 @@ function Signup() {
                   type="text"
                   name="email"
                   class="form-control  signup" 
+                  onChange={(e) =>setEmail(e.target.value)}
                   placeholder="Email address"
                 />
               </div>
               <div class="form-group d-flex flex-row align-items-end">
-              <BsFillImageFill className="position-absolute text-muted d-flex pl-3" 
+              <MdContactPhone className="position-absolute text-muted d-flex pl-3" 
               style={{fontSize:"3rem"}}/>
                 <input
-                  type="file"
-                  name="photo"
+                  type="text"
+                  name="text"
                   class="form-control  signup" 
-                  accept=".jpg,.png,.gif"
-                  placeholder="Profile Picture"  
+                  onChange={(e) =>setPhone(e.target.value)}
+                  placeholder="Phone Number"
                 />
               </div>
+               
               <div class="form-group d-flex flex-row align-items-end">
               <RiLockPasswordLine className="position-absolute text-muted d-flex pl-3" 
               style={{fontSize:"3rem"}}/>
@@ -86,6 +108,7 @@ function Signup() {
                   name="password"
                   className="form-control signup"
                   placeholder="Password"
+                  onChange={(e) =>setPassword(e.target.value)}
                 />
               </div>
               <div class="form-button d-flex justify-content-center mt-4 ">
@@ -103,6 +126,8 @@ function Signup() {
           </div>
         </div>
       </div>
+      </>} 
+      <ToastContainer/>
     </div>
   );
 }

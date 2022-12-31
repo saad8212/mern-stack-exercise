@@ -120,7 +120,7 @@ img {
 .table-wrapper{
 
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
-    max-height:60vh !important;
+    max-height:66vh !important;
     overflow-y:scroll;
     
 }
@@ -148,4 +148,9 @@ img {
   }
   .create-icon:hover {
     background-color: black;
+  }
+  .dropdown-menu{
+    margin-left: -23% !important;
+    margin-top: 1vh;
+    text-align: center;  
   }

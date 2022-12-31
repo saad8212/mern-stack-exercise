@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import {Navigate,useNavigate} from 'react-router-dom'
 import "./auth.css";
 import {AiOutlineMail} from 'react-icons/ai';
 import {RiLockPasswordLine} from 'react-icons/ri';
-import { Link, useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom";
 function Login() {
-  const [err, setErr] = useState(null);
   const navigate = useNavigate();
+  const [err, setErr] = useState(null);
   const auth = localStorage.getItem("user");
   console.log(auth);
   // Login Handler
@@ -30,7 +31,7 @@ function Login() {
         localStorage.setItem("user", JSON.stringify(result.user));
         localStorage.setItem("token", JSON.stringify(result.auth));
         console.log(result);
-        navigate("/");
+        navigate('/');
       } else {
         setErr(result.message);
       }
@@ -38,6 +39,8 @@ function Login() {
   };
   return (
     <div class="mt-5">
+      {auth?<Navigate to = "/"/>:
+      <>
       <div class="row">
         <div class="col-lg-4 col-md-6 col-10 offset-lg-4 offset-md-3 offset-1 formSection">
           <div class="container mb-5">
@@ -81,6 +84,7 @@ function Login() {
           </div>
         </div>
       </div>
+      </>}
     </div>
   );
 }

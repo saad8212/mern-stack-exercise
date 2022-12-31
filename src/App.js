@@ -6,18 +6,20 @@ import NoPage from "./components/pages/noPage";
 import Login from './components/pages/authentication/login';
 import Signup from './components/pages/authentication/signup';
 import CreateActivity from './components/pages/createActivity';
+import PrivateComponent from './components/PrivateComponent';
 
 function App() {
   return (
     <BrowserRouter>
+    <Navbar />
       <Routes>
-        <Route path="/" element={<Navbar />}>
+        <Route element={<PrivateComponent/>}>
           <Route index element={<Home/>} />
           <Route path='/create' element={<CreateActivity/>} />
-          <Route path='/login' element={<Login/>} />
-          <Route path = "/signup" element={<Signup/>} />
           <Route path="*" element={<NoPage/>} />
         </Route>
+          <Route path='/login' element={<Login/>} />
+          <Route path = "/signup" element={<Signup/>} />
       </Routes>
     </BrowserRouter>
   );
