@@ -1,5 +1,5 @@
 import React,{useEffect,useState,createContext} from 'react' ;
-import Listing from '../layout/listing'
+import Listing from '../layout/listing' 
 export const globalState = createContext();
 function Home() {
   const [data, setData] = useState();   

@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; 
+import { ToastContainer, toast } from 'react-toastify';
+import { CgNametag,CgSelectR } from "react-icons/cg";
+import { BiTime } from "react-icons/bi";
+import { BsFillCalendar2DateFill } from "react-icons/bs";
+import 'react-toastify/dist/ReactToastify.css';
+
 function Modal(props) {
   const [err, setErr] = useState(null);
   const auth = localStorage.getItem("user"); 
@@ -39,6 +45,14 @@ function Modal(props) {
       );
       var result = await submit_data.json();
       if (submit_data.status === 200) {
+        let updateToast = () =>{
+          toast.success("Activity Updated!",{
+            position:"top-center",
+            autoClose: 2000,
+            theme: "colored",
+          });
+        }
+        updateToast();
         props.setData(result);  
         navigate('/');
       }
@@ -75,7 +89,11 @@ function Modal(props) {
             <div className="modal-body">
               <div className="container">
                 <form id="makeTodo" onSubmit={updateActivity}>
-                <div class="form-group d-flex flex-row align-items-end">
+                <div class="form-group d-flex flex-row align-items-end"> 
+                  <CgNametag
+                    className="position-absolute text-muted d-flex pl-3"
+                    style={{ fontSize: "3rem" }}
+                  />
                   <input
                     type="text"
                     onChange={(e) => setName(e.target.value)}
@@ -88,6 +106,10 @@ function Modal(props) {
                   <span className="text-danger">"Name is not valid"</span>
                 )}
                  <div class="form-group d-flex flex-row align-items-end select">
+                 <CgSelectR
+                    className="position-absolute text-muted d-flex pl-3"
+                    style={{ fontSize: "3rem" }}
+                  />
                   <select onChange={(e) =>setType(e.target.value)} 
                     className="form-select  signup text-muted border" selected = {type}
                   >
@@ -101,6 +123,10 @@ function Modal(props) {
                   </select>
                 </div>
                 <div class="form-group d-flex flex-row align-items-end">
+                <BiTime
+                    className="position-absolute text-muted d-flex pl-3"
+                    style={{ fontSize: "3rem" }}
+                  />
                   <input
                     type="text"
                     onChange={(e) => setDuration(e.target.value)}
@@ -114,6 +140,10 @@ function Modal(props) {
                 )}
                  
                 <div class="form-group d-flex flex-row align-items-end">
+                <BsFillCalendar2DateFill
+                    className="position-absolute text-muted d-flex pl-3"
+                    style={{ fontSize: "3rem" }}
+                  />
                   <input
                     type="date"
                     onChange={(e) => setDate(e.target.value)}
@@ -151,6 +181,7 @@ function Modal(props) {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 }

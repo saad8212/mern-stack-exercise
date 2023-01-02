@@ -55,34 +55,7 @@ img {
     line-height: 1.6;
     font-weight: 500;
    }
-   .icon {
-    font-size: 3.5em !important;
-    color: #007bff; 
-    transition: 0.4s ease-in-out font-size;
-    -webkit-transition: 0.4s ease-in-out font-size;
-    -moz-transition: 0.4s ease-in-out font-size;
-    -ms-transition: 0.4s ease-in-out font-size;
-    -o-transition: 0.4s ease-in-out font-size;
-}
-   .icon-wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%; 
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
-    height: 80px;
-    width: 80px;
-}
-.icon:hover{
-    color: blue;
-    font-size:3.8rem !important;
-}
+  
 .activity-name {
     font-size: 1.5rem;
     word-spacing: 4px;
@@ -114,21 +87,11 @@ img {
  .thead{
     height: 12vh;
     width: 100% !important; 
+    min-width: 100%;
     color: #f1f1f1;
     border-top: 2px solid #007bff;
 }
-.table-wrapper{
 
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
-    max-height:66vh !important;
-    overflow-y:scroll;
-    
-}
- 
-.table-wrapper::-webkit-scrollbar { 
-  display: none !important;
-  z-index: -2;
-}
 .table thead th {
     vertical-align: middle !important;
 }
@@ -154,3 +117,5 @@ img {
     margin-top: 1vh;
     text-align: center;  
   }
+
+ 

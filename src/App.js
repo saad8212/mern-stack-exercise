@@ -7,6 +7,7 @@ import Login from './components/pages/authentication/login';
 import Signup from './components/pages/authentication/signup';
 import CreateActivity from './components/pages/createActivity';
 import PrivateComponent from './components/PrivateComponent';
+import Details from './components/pages/details';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route element={<PrivateComponent/>}>
           <Route index element={<Home/>} />
           <Route path='/create' element={<CreateActivity/>} />
+          <Route path='/details/:id' element={<Details/>} />
           <Route path="*" element={<NoPage/>} />
         </Route>
           <Route path='/login' element={<Login/>} />
