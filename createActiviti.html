@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="auth.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRACKING SITE</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <div>
+        <div class="mt-3">
+          <div class="row">
+            <div class="col-lg-4 col-md-10 col-10 offset-lg-4 offset-md-1 offset-1 create-form">
+              <div class="container">
+                <div class=" headings text-center mt-3">
+                  <h1>Create Activity</h1>
+                </div>
+  
+                <form id="makeTodo" onSubmit={activityHandler}>
+                  <div class="form-group d-flex flex-row align-items-end">
+                    <input
+                      type="text"
+                      class="form-control  signup"
+                      placeholder="Name..."
+                    />
+                  </div>
+                  
+                  
+                   <div class="form-group d-flex flex-row align-items-end select">
+                    <select class="signup">
+                      <option selected>Select Activity Type...</option>
+                      <option value="running">Running</option>
+                      <option value="swimming">Swimming</option>
+                      <option value="cycling">Cycling</option>
+                      <option value="jumping">Jumping</option>
+                      <option value="walking">Walking</option>
+                      <option value="hiking">Hiking</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group d-flex flex-row align-items-end">
+                    <input
+                      type="text"
+                      class="form-control  signup"
+                      placeholder="Duration in Minutes..."
+                    />
+                  </div>
+                    <span class="text-danger">"duration is required"</span>
+                   
+                  <div class="form-group d-flex flex-row align-items-end">
+                    <input
+                      type="date"
+                      class="form-control  signup"
+                      placeholder="Date..."
+                    />
+                  </div>
+                    <span class="text-danger">"date is required"</span>
+  
+                  <div class="form-group d-flex flex-row align-items-end">
+                    <textarea
+                      rows="4"
+                      cols="50"
+                      class="form-control textarea"
+                      placeholder="Enter Details..."
+                    ></textarea>
+                  </div>
+                    <span class="text-danger">"details is required"</span>
+                  <div class="form-button d-flex justify-content-center mt-4 ">
+                    <button type="submit" class="btn btn-info auth-button">
+                      Create
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+    
+</body>
+</html>
